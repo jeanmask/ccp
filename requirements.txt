@@ -4,6 +4,7 @@
 #
 #    pip-compile --output-file requirements.txt requirements.in
 #
+-e git+https://github.com/jeanmask/django-money-rates.git@master#egg=django-money-rates
 django-extensions==1.6.7
 django-filter==0.13.0
 django-money==0.8
