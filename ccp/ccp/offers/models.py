@@ -6,7 +6,8 @@ from djmoney.models.fields import MoneyField
 
 
 class Offer(models.Model):
-    seller = models.ForeignKey('sellers.seller')
+    seller = models.ForeignKey('sellers.Seller')
+    operational_systems = models.ManyToManyField('offers.OperationalSystem')
     cpu_cores = models.PositiveSmallIntegerField(
         verbose_name=_('CPU Cores'),
     )
@@ -24,3 +25,15 @@ class Offer(models.Model):
         decimal_places=2,
         default_currency='USD',
     )
+
+
+class OperationalSystem(models.Model):
+    name = models.CharField(
+        verbose_name=_('Name'),
+        max_length=255,
+    )
+
+    class Meta:
+        verbose_name = _('Operational System')
+        verbose_name_plural = _('Operational Systems')
+        ordering = ('name',)
