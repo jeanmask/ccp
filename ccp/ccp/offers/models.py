@@ -6,6 +6,7 @@ from djmoney.models.fields import MoneyField
 
 
 class Offer(models.Model):
+    seller = models.ForeignKey('sellers.seller')
     cpu_cores = models.PositiveSmallIntegerField(
         verbose_name=_('CPU Cores'),
     )
