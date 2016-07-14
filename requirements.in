@@ -3,3 +3,5 @@ django-extensions
 djangorestframework
 markdown
 django-filter
+py-moneyed
+django-money
