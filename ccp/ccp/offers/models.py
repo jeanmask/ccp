@@ -46,11 +46,50 @@ class Offer(models.Model):
         default_currency='USD',
     )
 
+    def get_cpu_cores_display(self):
+        """
+        Returns formatted cpu core number
+
+        :returns: Plural or singular formatted cpu core number
+        :rtype: str
+
+        .. note::
+        eg.: 1 core, 2 cores
+        """
+
+        return '%s %s' % (
+            self.cpu_cores, _('cores') if self.cpu_cores > 1 else _('core')
+        )
+    get_cpu_cores_display.short_description = _('CPU')
+    get_cpu_cores_display.admin_order_field = 'cpu_cores'
+
     def get_memory_size_display(self):
+        """
+        Returns formatted memory size
+
+        :returns: Formatted and converted memory size with unit abbr
+        :rtype: str
+
+        .. note::
+        eg.: 512MB, 1GB, 8GB
+        """
         return filesizeformat(self.memory_size, decimals=0)
+    get_memory_size_display.short_description = _('Memory size')
+    get_memory_size_display.admin_order_field = 'memory_size'
 
     def get_disk_size_display(self):
+        """
+        Returns formatted disk size
+
+        :returns: Formatted and converted disk size with unit abbr
+        :rtype: str
+
+        .. note::
+        eg.: 512MB, 1GB, 8GB
+        """
         return filesizeformat(self.disk_size, decimals=0)
+    get_disk_size_display.short_description = _('Disk size')
+    get_disk_size_display.admin_order_field = 'disk_size'
 
     def __str__(self):
         if self.cpu_cores > 1:

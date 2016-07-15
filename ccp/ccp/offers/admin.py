@@ -28,11 +28,7 @@ class OfferAdmin(admin.ModelAdmin):
         'price',
     )
 
-    def get_cpu_cores_display(self, obj):
-        return '%s %s' % (
-            obj.cpu_cores, _('cores') if obj.cpu_cores > 1 else _('core')
-        )
-    get_cpu_cores_display.short_description = _('CPU')
+    filter_horizontal = ('operational_systems',)
 
     def os(self, obj):
         qs = obj.operational_systems.values_list('name', flat=True)
