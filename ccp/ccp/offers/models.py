@@ -73,6 +73,11 @@ class Offer(models.Model):
             'disk_type': self.get_disk_type_display(),
         }
 
+    class Meta:
+        verbose_name = _('Offer')
+        verbose_name_plural = _('Offers')
+        ordering = ('seller_id',)
+
 
 class OperationalSystem(models.Model):
     name = models.CharField(
