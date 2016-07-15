@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 
+from functools import partial
+
 from django.db import models
 from django.utils.translation import ugettext as _
 from djmoney.models.fields import MoneyField
 from sizefield.models import FileSizeField
+from sizefield.utils import filesizeformat
 
 
 class Offer(models.Model):
@@ -45,12 +48,40 @@ class Offer(models.Model):
         default_currency='USD',
     )
 
+    def __str__(self):
+        if self.cpu_cores > 1:
+            txt = '%s - %s - %s %s' % (
+                _('%(cores)d cores'),
+                _('%(memory)s RAM'),
+                '%(disk)s',
+                _('%(disk_type)s Disk'),
+            )
+        else:
+            txt = '%s - %s - %s %s' % (
+                _('%(cores)d core'),
+                _('%(memory)s RAM'),
+                '%(disk)s',
+                _('%(disk_type)s Disk'),
+            )
+
+        filesizeformat_ = partial(filesizeformat, decimals=0)
+
+        return txt % {
+            'cores': self.cpu_cores,
+            'memory': filesizeformat_(self.memory_size),
+            'disk': filesizeformat_(self.disk_size),
+            'disk_type': self.get_disk_type_display(),
+        }
+
 
 class OperationalSystem(models.Model):
     name = models.CharField(
         verbose_name=_('Name'),
         max_length=255,
     )
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = _('Operational System')

@@ -15,6 +15,9 @@ class Seller(models.Model):
         help_text=_('Seller\'s homepage URL'),
     )
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name = _('Seller')
         verbose_name_plural = _('Sellers')
