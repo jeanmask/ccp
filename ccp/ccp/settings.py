@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '::1']
 
 
 # Application definition
@@ -42,7 +42,9 @@ INSTALLED_APPS = [
 
     # 3rd party apps
     'rest_framework',
+    'crispy_forms',
     'django_extensions',
+    'djmoney',
     'djmoney_rates',
     'sizefield',
 
@@ -142,4 +144,9 @@ DJANGO_MONEY_RATES = {
     'OPENEXCHANGE_URL': 'http://openexchangerates.org/api/latest.json',
     'OPENEXCHANGE_APP_ID': os.environ.get('OPENEXCHANGE_APP_ID', '545780620ff343379e4ad606f2b32a8a'),
     'OPENEXCHANGE_BASE_CURRENCY': 'USD',
+}
+
+# django rest framework configs
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
 }

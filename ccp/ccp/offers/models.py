@@ -8,7 +8,7 @@ from sizefield.utils import filesizeformat
 
 
 class Offer(models.Model):
-    seller = models.ForeignKey('sellers.Seller')
+    seller = models.ForeignKey('sellers.Seller', related_name='offers')
 
     operational_systems = models.ManyToManyField('offers.OperationalSystem')
 

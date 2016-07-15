@@ -1,6 +1,16 @@
-try:
-    from django.conf.urls import *
-except ImportError:  # django < 1.4
-    from django.conf.urls.defaults import *
+# -*- coding: utf-8 -*-
 
-# place app url patterns here
+from django.conf.urls import url, include
+from rest_framework import routers
+
+from .views import OfferViewSet, OSViewSet
+
+
+router = routers.DefaultRouter()
+router.register(r'offers', OfferViewSet)
+router.register(r'os', OSViewSet)
+
+
+urlpatterns = [
+    url(r'^', include(router.urls)),
+]
