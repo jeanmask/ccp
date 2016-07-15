@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_extensions',
     'djmoney_rates',
+    'sizefield',
 
     # project apps
     'ccp.apps.SellersConfig',
