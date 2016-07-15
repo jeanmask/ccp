@@ -9,15 +9,30 @@ from .models import Offer, OperationalSystem
 @admin.register(Offer)
 class OfferAdmin(admin.ModelAdmin):
     list_filter = ('seller__name',)
-    list_display = ('seller', 'os', '__str__', 'amount')
+
+    list_display = (
+        'seller',
+        'os',
+        'get_cpu_cores_display',
+        'get_memory_size_display',
+        'get_disk_size_display',
+        'price',
+    )
+
     fields = (
         'seller',
         'operational_systems',
         'cpu_cores',
         'memory_size',
         ('disk_size', 'disk_type'),
-        'amount',
+        'price',
     )
+
+    def get_cpu_cores_display(self, obj):
+        return '%s %s' % (
+            obj.cpu_cores, _('cores') if obj.cpu_cores > 1 else _('core')
+        )
+    get_cpu_cores_display.short_description = _('CPU')
 
     def os(self, obj):
         qs = obj.operational_systems.values_list('name', flat=True)

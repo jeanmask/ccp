@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from functools import partial
-
 from django.db import models
 from django.utils.translation import ugettext as _
 from djmoney.models.fields import MoneyField
@@ -41,12 +39,18 @@ class Offer(models.Model):
         default=DISK_TYPE_SSD,
     )
 
-    amount = MoneyField(
+    price = MoneyField(
         verbose_name=_('Price'),
         max_digits=10,
         decimal_places=2,
         default_currency='USD',
     )
+
+    def get_memory_size_display(self):
+        return filesizeformat(self.memory_size, decimals=0)
+
+    def get_disk_size_display(self):
+        return filesizeformat(self.disk_size, decimals=0)
 
     def __str__(self):
         if self.cpu_cores > 1:
@@ -64,12 +68,10 @@ class Offer(models.Model):
                 _('%(disk_type)s Disk'),
             )
 
-        filesizeformat_ = partial(filesizeformat, decimals=0)
-
         return txt % {
             'cores': self.cpu_cores,
-            'memory': filesizeformat_(self.memory_size),
-            'disk': filesizeformat_(self.disk_size),
+            'memory': self.get_memory_size_display(),
+            'disk': self.get_disk_size_display(),
             'disk_type': self.get_disk_type_display(),
         }
 
