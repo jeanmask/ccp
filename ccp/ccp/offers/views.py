@@ -55,12 +55,19 @@ class OfferFilter(filters.FilterSet):
         )
 
 
-class OfferViewSet(viewsets.ModelViewSet):
+class OfferViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Offer.objects.all()
     serializer_class = OfferSerializer
     filter_class = OfferFilter
+    ordering_fields = ('cpu_cores', 'memory_size', 'disk_size', 'price',)
+
+    def get_serializer(self, *args, **kwargs):
+        exchange_currency = self.request.GET.get('exchange_currency')
+        if exchange_currency:
+            kwargs['exchange_currency'] = exchange_currency
+        return super(OfferViewSet, self).get_serializer(*args, **kwargs)
 
 
-class OSViewSet(viewsets.ModelViewSet):
+class OSViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = OperationalSystem.objects.all()
     serializer_class = OSSerializer

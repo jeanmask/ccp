@@ -7,6 +7,16 @@ from sizefield.models import FileSizeField
 from sizefield.utils import filesizeformat
 
 
+class OfferQuerySet(models.QuerySet):
+    def exchange_currency(self, currency):
+        pass
+
+
+class OfferManager(models.Manager):
+    def exchange_currency(self, currency):
+        return self.get_queryset()
+
+
 class Offer(models.Model):
     seller = models.ForeignKey('sellers.Seller', related_name='offers')
 
