@@ -26,7 +26,7 @@
       <form class="navbar-form pull-right">
         <div class="form-group">
           <label class="sr-only">Select your currency:</label>
-          <select class="form-control" ng-model="filters.exchangeCurrency.value">
+          <select class="form-control" ng-model="filters.exchangeCurrency.value" ng-change="getOffers();">
             <option value="USD" selected>USD</option>
             <option value="BRL">BRL</option>
             <option value="EUR">EUR</option>
