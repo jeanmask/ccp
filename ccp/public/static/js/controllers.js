@@ -28,7 +28,8 @@
     }
 
     function getOffers() {
-      var parsedFilters = {};
+      // Default options
+      var parsedFilters = {'ordering': 'price'};
 
       lodash($scope.filters)
         .forEach(function (item) {
