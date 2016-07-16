@@ -51,7 +51,7 @@ class OfferFilter(filters.FilterSet):
             'min_memory_size', 'max_memory_size',
             'min_disk_size', 'max_disk_size',
             'min_price', 'max_price',
-            'disk_type',
+            'disk_type', 'seller'
         )
 
 
