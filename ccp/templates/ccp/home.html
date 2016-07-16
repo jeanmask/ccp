@@ -1,3 +1,139 @@
-{% extends "ccp/base.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CCP - Cloud Compare System</title>
 
-{% block foo %}asdf{% endblock %}
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/static/components/angularjs-slider/dist/rzslider.min.css">
+</head>
+
+{% verbatim %}
+<body ng-app="app" ng-controller="offersCtrl">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">
+          CCP
+        </a>
+      </div>
+
+
+      <form class="navbar-form pull-right">
+        <div class="form-group">
+          <label class="sr-only">Select your currency:</label>
+          <select class="form-control" ng-model="filters.exchangeCurrency.value">
+            <option value="USD" selected>USD</option>
+            <option value="BRL">BRL</option>
+            <option value="EUR">EUR</option>
+          </select>
+        </div>
+      </form>
+    </div>
+  </nav>
+
+  <section class="container-fluid">
+    <div class="row">
+      <div class="col-xs-8">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> Seller</th>
+                <th><span class="glyphicon glyphicon-record" aria-hidden="true"></span> CPU Cores</th>
+                <th><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Memory size</th>
+                <th><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span> Disk size</th>
+                <th><span class="glyphicon glyphicon-euro" aria-hidden="true"></span> Price</th> 
+                <th></th>               
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="offer in offers">
+                <td>{{offer.seller.name}}</td>
+                <td>{{offer.cpu_cores}}</td>
+                <td>{{offer.memory_size | bytes}}</td>
+                <td>{{offer.disk_size | bytes}} {{offer.disk_type | uppercase}}</td>
+                <td>{{offer.price | currency : ' ' + offer.price_currency + ' ' }}</td>
+                <td><a href="{{offer.seller.homepage}}" target="_blank" class="btn btn-primary">Buy!</a></td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+      <div class="col-xs-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">Filters</div>
+
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-12">
+                <form ng-submit="getOffers()">
+                  <div class="form-group">
+                    <label><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> Seller</label>
+                    <select class="form-control" ng-model="filters.seller.value">
+                      <option ng-repeat="seller in sellers" value="{{ seller.id }}">{{ seller.name }}</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label><span class="glyphicon glyphicon-record" aria-hidden="true"></span> CPU Cores</label>
+
+                    <rzslider rz-slider-model="filters.cpuCores.min"
+                              rz-slider-high="filters.cpuCores.max"
+                              rz-slider-options="filters.cpuCores.options"></rzslider>
+                  </div>
+
+                  <div class="form-group">
+                    <label><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span> Disk size</label>
+                    <rzslider rz-slider-model="filters.diskSize.min"
+                              rz-slider-high="filters.diskSize.max"
+                              rz-slider-options="filters.diskSize.options"></rzslider>
+                  </div>
+
+                  <div class="form-group">
+                    <label><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Memory size</label>
+                    <rzslider rz-slider-model="filters.memorySize.min"
+                              rz-slider-high="filters.memorySize.max"
+                              rz-slider-options="filters.memorySize.options"></rzslider>
+                  </div>
+
+                  <div class="form-group">
+                    <label><span class="glyphicon glyphicon-euro" aria-hidden="true"></span> Price</label>
+                    <rzslider rz-slider-model="filters.price.min"
+                              rz-slider-high="filters.price.max"
+                              rz-slider-options="filters.price.options"></rzslider>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary pull-right">Filter</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="/static/components/angular/angular.min.js"></script>
+  <script src="/static/components/angular-route/angular-route.min.js"></script>
+
+  <script src="/static/components/angular-bootstrap/ui-bootstrap.min.js"></script>
+  <script src="/static/components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+  <script src="/static/components/lodash/dist/lodash.min.js"></script>
+  <script src="/static/components/restangular/dist/restangular.js"></script>
+
+  <script src="/static/components/ng-lodash/build/ng-lodash.min.js"></script>
+
+  <script src="/static/components/angularjs-slider/dist/rzslider.min.js"></script>
+
+  <script src="/static/js/app.js"></script>
+  <script src="/static/js/config.js"></script>
+  <script src="/static/js/filters.js"></script>
+  <script src="/static/js/controllers.js"></script>
+</body>
+{% endverbatim %}
+</html>

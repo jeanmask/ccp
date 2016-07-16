@@ -1,0 +1,26 @@
+{
+  "name": "ccp",
+  "description": "CCP - Cloud Compare Project",
+  "main": "",
+  "authors": [
+    "Jean O. Rodrigues"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/jeanmask/ccp",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "ccp/public/static/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.7",
+    "angular-bootstrap": "^1.3.3",
+    "restangular": "^1.5.2",
+    "angular-route": "^1.5.7",
+    "angularjs-slider": "^5.4.0",
+    "ng-lodash": "^0.5.0"
+  }
+}
