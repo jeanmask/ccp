@@ -83,7 +83,11 @@
         min: 0,
         max: 24,
         toQuery: function () {
-          return toQuerySlider(this, 'memory_size')
+          return lodash(toQuerySlider(this, 'memory_size'))
+            .mapValues(function(value) {
+              return value * 1024 * 1024 * 1024;
+            })
+            .value();
         },
         options: {
           minLimit: 0,
@@ -98,12 +102,17 @@
         min: 0,
         max: 1024,
         toQuery: function () {
-          return toQuerySlider(this, 'disk_size')
+          return lodash(toQuerySlider(this, 'disk_size'))
+            .mapValues(function(value) {
+              return value * 1024 * 1024 * 1024;
+            })
+            .value();
         },
         options: {
           minRange: 10,
           minLimit: 0,
           maxLimit: 1024,
+          step: 2,
           translate: function(value) {
             if (value == 1024) {
               return '1 TB';
