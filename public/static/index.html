@@ -24,8 +24,8 @@
 
       <form class="navbar-form pull-right">
         <div class="form-group">
-          <label>Convert prices to:</label>
-          <select class="form-control" ng-model="filters.exchangeCurrency.value" ng-change="getOffers();">
+          <label>Exchange prices to:</label>
+          <select class="form-control" ng-model="filters.exchangeCurrency.value" ng-change="changeCurrency()">
             <option value="USD" selected>USD</option>
             <option value="BRL">BRL</option>
             <option value="EUR">EUR</option>
@@ -46,12 +46,11 @@
                 <th class="text-right col-xs-2"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Memory size</th>
                 <th class="text-right col-xs-2"><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span> Disk size</th>
                 <th class="text-right col-xs-2"><span class="glyphicon glyphicon-euro" aria-hidden="true"></span> Price</th> 
-                <th class="text-right col-xs-3"></th>
               </tr>
             </thead>
             <tbody>
               <tr ng-repeat="offer in offers">
-                <td>{{offer.seller.name}}</td>
+                <td><a href="{{offer.seller.homepage}}" target="_blank">{{offer.seller.name}}</a></td>
                 <td class="text-center">{{ offer.cpu_cores }}</td>
                 <td class="text-right">{{ offer.memory_size | bytes }}</td>
                 <td class="text-right">{{ offer.disk_size | bytes }} {{ offer.disk_type | uppercase }}</td>
@@ -61,7 +60,6 @@
                     <br/>({{ offer.exchanged_price | currency : '' }} {{ offer.exchanged_price_currency }})
                   </small>
                 </td>
-                <td class="text-right"><a href="{{offer.seller.homepage}}" target="_blank" class="btn btn-primary">Buy!</a></td>
               </tr>
             </tbody>
         </table>

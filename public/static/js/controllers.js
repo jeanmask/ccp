@@ -29,7 +29,7 @@
 
     function getOffers() {
       // Default options
-      var parsedFilters = {'ordering': 'price'};
+      var parsedFilters = {'ordering': 'exchanged_price'};
 
       lodash($scope.filters)
         .forEach(function (item) {
@@ -45,6 +45,11 @@
         .then(function (offers) {
           $scope.offers = offers.plain();
         });
+    }
+
+    function changeCurrency() {
+      $scope.$broadcast('rzSliderForceRender');
+      getOffers();
     }
 
     $scope.filters = {
@@ -78,6 +83,9 @@
           maxLimit: 18,
           showTicks: true,
           showTicksValues: true,
+          translate: function(value) {
+            return value + (value == 18 ? '+' : '');
+          }
         },
       },
       memorySize: {
@@ -95,7 +103,7 @@
           maxLimit: 50,
           minRange: 2,
           translate: function(value) {
-            return value + ' GB';
+            return value + ' GB' + (value == 50 ? '+' : '');
           },
         },
       },
@@ -116,7 +124,7 @@
           step: 2,
           translate: function(value) {
             if (value == 1024) {
-              return '1 TB';
+              return '1 TB+';
             }
             return value + ' GB';
           },
@@ -129,12 +137,13 @@
           return toQuerySlider(this, 'price');
         },
         options: {
+          id: 'priceSlider',
           maxLimit: 500,
           minLimit: 0,
           minRange: 5,
           step: 5,
           translate: function(value) {
-            return 'USD ' + value;
+            return $scope.filters.exchangeCurrency.value + ' ' + value + (value == 500 ? '+' : '');
           },
         },
       },
@@ -145,6 +154,8 @@
 
     $scope.sellers = [];
     $scope.getSellers = getSellers;
+
+    $scope.changeCurrency = changeCurrency;
 
     getSellers();
     getOffers();
