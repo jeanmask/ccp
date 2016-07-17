@@ -19,7 +19,7 @@ server {
     }
 
     location / {
-        try_files <%= ENV['OPENSHIFT_REPO_DIR'] %>public/static/index.html
+        try_files <%= ENV['OPENSHIFT_REPO_DIR'] %>public/static/index.html;
     }
 
     location /api/ {
