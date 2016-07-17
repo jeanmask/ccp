@@ -82,7 +82,7 @@
       },
       memorySize: {
         min: 0,
-        max: 24,
+        max: 50,
         toQuery: function () {
           return lodash(toQuerySlider(this, 'memory_size'))
             .mapValues(function(value) {
@@ -92,7 +92,7 @@
         },
         options: {
           minLimit: 0,
-          maxLimit: 24,
+          maxLimit: 50,
           minRange: 2,
           translate: function(value) {
             return value + ' GB';
