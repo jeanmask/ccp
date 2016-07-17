@@ -69,7 +69,7 @@ ROOT_URLCONF = 'ccp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,11 +134,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'public/static'),
+    os.path.join(BASE_DIR, '../public/static'),
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'public/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, '../public/media')
 
 # Currency definitions - django-money
 CURRENCIES = ('USD', 'BRL', 'EUR',)
