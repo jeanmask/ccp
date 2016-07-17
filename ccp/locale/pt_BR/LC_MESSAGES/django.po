@@ -1,0 +1,128 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: CCP\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-16 21:38-0300\n"
+"PO-Revision-Date: 2016-07-16 21:44-0300\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Last-Translator: Jean Oliveira Rodrigues <misc@jean.bz>\n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#: ccp/apps.py:9 ccp/sellers/models.py:23
+msgid "Sellers"
+msgstr "Vendedores"
+
+#: ccp/apps.py:14 ccp/offers/models.py:129
+msgid "Offers"
+msgstr "Ofertas"
+
+#: ccp/offers/admin.py:36 ccp/offers/models.py:144
+msgid "Operational Systems"
+msgstr "Sistemas Operacionais"
+
+#: ccp/offers/models.py:26
+msgid "CPU Cores"
+msgstr "Núcleos de CPU"
+
+#: ccp/offers/models.py:30 ccp/offers/models.py:87
+msgid "Memory size"
+msgstr "Memoria"
+
+#: ccp/offers/models.py:31
+msgid "Put values in MB, GB or TB. Eg.: 512MB, 1024MB, 2GB."
+msgstr "Coloque valores em MB, GB ou TB. Ex.: 512MB, 1024MB, 2GB."
+
+#: ccp/offers/models.py:35 ccp/offers/models.py:101
+msgid "Disk size"
+msgstr "Disco"
+
+#: ccp/offers/models.py:36
+msgid "Put values in MB, GB or TB. Eg.: 20GB, 40GB, 1TB."
+msgstr "Coloque valores em MB, GB ou TB. Ex.: 20GB, 40GB, 1TB."
+
+#: ccp/offers/models.py:42
+msgid "SSD"
+msgstr "SSD"
+
+#: ccp/offers/models.py:43
+msgid "HDD"
+msgstr "HDD"
+
+#: ccp/offers/models.py:46
+msgid "Disk type"
+msgstr "TIpo de disco"
+
+#: ccp/offers/models.py:53
+msgid "Price"
+msgstr "Preço"
+
+#: ccp/offers/models.py:71
+msgid "cores"
+msgstr "núcleos"
+
+#: ccp/offers/models.py:71
+msgid "core"
+msgstr "núcleo"
+
+#: ccp/offers/models.py:73
+msgid "CPU"
+msgstr "CPU"
+
+#: ccp/offers/models.py:107
+#, python-format
+msgid "%(cores)d cores"
+msgstr "%(cores)d núcleos"
+
+#: ccp/offers/models.py:108 ccp/offers/models.py:115
+#, python-format
+msgid "%(memory)s RAM"
+msgstr "%(memory)s RAM"
+
+#: ccp/offers/models.py:110 ccp/offers/models.py:117
+#, python-format
+msgid "%(disk_type)s Disk"
+msgstr "%(disk_type)s Disco"
+
+#: ccp/offers/models.py:114
+#, python-format
+msgid "%(cores)d core"
+msgstr "%(cores)d núcleo"
+
+#: ccp/offers/models.py:128
+msgid "Offer"
+msgstr "Oferta"
+
+#: ccp/offers/models.py:135 ccp/sellers/models.py:10
+msgid "Name"
+msgstr "Nome"
+
+#: ccp/offers/models.py:143
+msgid "Operational System"
+msgstr "Sistema Operacional"
+
+#: ccp/offers/serializers.py:23
+#, python-format
+msgid "Exchange currency \"%s\" is not valid"
+msgstr "Moeda de conversão \"%s\" não é válida"
+
+#: ccp/sellers/models.py:14
+msgid "Homepage"
+msgstr "Homepage"
+
+#: ccp/sellers/models.py:15
+msgid "Seller's homepage URL"
+msgstr "Site do vendedor"
+
+#: ccp/sellers/models.py:22
+msgid "Seller"
+msgstr "Vendedor"
