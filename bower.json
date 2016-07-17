@@ -11,7 +11,7 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "ccp/public/static/components",
+    "public/static/bower_components",
     "test",
     "tests"
   ],
