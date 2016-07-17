@@ -24,7 +24,7 @@
 
       <form class="navbar-form pull-right">
         <div class="form-group">
-          <label class="sr-only">Select your currency:</label>
+          <label>Convert prices to:</label>
           <select class="form-control" ng-model="filters.exchangeCurrency.value" ng-change="getOffers();">
             <option value="USD" selected>USD</option>
             <option value="BRL">BRL</option>
@@ -55,7 +55,12 @@
                 <td class="text-center">{{ offer.cpu_cores }}</td>
                 <td class="text-right">{{ offer.memory_size | bytes }}</td>
                 <td class="text-right">{{ offer.disk_size | bytes }} {{ offer.disk_type | uppercase }}</td>
-                <td class="text-right">{{ offer.price | currency : '' }} {{ offer.price_currency }}</td>
+                <td class="text-right">
+                  {{ offer.price | currency : '' }} {{ offer.price_currency }}
+                  <small ng-if="offer.exchanged_price">
+                    <br/>({{ offer.exchanged_price | currency : '' }} {{ offer.exchanged_price_currency }})
+                  </small>
+                </td>
                 <td class="text-right"><a href="{{offer.seller.homepage}}" target="_blank" class="btn btn-primary">Buy!</a></td>
               </tr>
             </tbody>

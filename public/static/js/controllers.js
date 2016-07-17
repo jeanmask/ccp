@@ -51,7 +51,7 @@
       exchangeCurrency: {
         value: 'USD',
         toQuery: function() {
-          if (this.value && this.value !== 'USD') {
+          if (this.value) {
             return {'exchange_currency': this.value};
           }
           return false;
@@ -134,7 +134,7 @@
           minRange: 5,
           step: 5,
           translate: function(value) {
-            return $scope.filters.exchangeCurrency.value + ' ' + value;
+            return 'USD ' + value;
           },
         },
       },

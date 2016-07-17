@@ -14,15 +14,20 @@ class OfferSerializer(serializers.ModelSerializer):
         super(OfferSerializer, self).__init__(*args, **kwargs)
 
     def to_representation(self, obj):
-        if self.exchange_currency:
+        data = super(OfferSerializer, self).to_representation(obj)
+        if self.exchange_currency\
+                and self.exchange_currency != obj.price.currency.code:
             try:
-                obj.price = convert_money(obj.price.amount,
-                                          obj.price.currency.code,
-                                          self.exchange_currency)
+                exchanged = convert_money(
+                    obj.price.amount,
+                    obj.price.currency.code,
+                    self.exchange_currency)
+                data['exchanged_price'] = exchanged.amount
+                data['exchanged_price_currency'] = exchanged.currency.code
             except CurrencyConversionException:
                 err = _('Exchange currency "%s" is not valid')
                 raise serializers.ValidationError(err % self.exchange_currency)
-        return super(OfferSerializer, self).to_representation(obj)
+        return data
 
     class Meta:
         model = Offer
