@@ -18,7 +18,6 @@ class IndexWhiteNoise(WhiteNoiseMiddleware):
         self.files.update(directory_indexes)
 
     def find_file(self, url):
-        print(url)
         if url.endswith('/'):
             url += self.INDEX_NAME
         return super(IndexWhiteNoise, self).find_file(url)
