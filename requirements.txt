@@ -15,6 +15,7 @@ Django==1.9.7             # via django-sizefield
 djangorestframework==3.4.0
 gunicorn==19.6.0
 markdown==2.6.6
+psycopg2==2.6.2
 py-moneyed==0.6.0
 python-dateutil==2.5.3
 six==1.10.0               # via django-extensions, python-dateutil

@@ -12,3 +12,4 @@ dj-database-url
 whitenoise
 -e git+https://github.com/django-money/django-money.git@master#egg=django-money
 -e git+https://github.com/jeanmask/django-money-rates.git@master#egg=django-money-rates  # use this fork for django 1.9 compatibility
+psycopg2 # heroku dep

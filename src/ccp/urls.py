@@ -15,12 +15,3 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(api_urls)),
 ]
-
-if settings.DEBUG:
-    from django.conf.urls.static import static
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    # Providing index.html in development
-    urlpatterns += patterns(
-        'django.contrib.staticfiles.views',
-        url(r'^(?:index.html)?$', 'serve', kwargs={'path': 'index.html'}))

@@ -1,1 +1,1 @@
-gunicorn --pythonpath src garage.wsgi --log-file -
+web: gunicorn --pythonpath src ccp.wsgi --log-file -
