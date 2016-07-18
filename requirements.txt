@@ -9,12 +9,14 @@
 django-crispy-forms==1.6.0
 django-extensions==1.6.7
 django-filter==0.13.0
-Django==1.9.7
+django-sizefield==0.9.1
+Django==1.9.7             # via django-sizefield
 djangorestframework==3.4.0
 gunicorn==19.6.0
 markdown==2.6.6
 py-moneyed==0.6.0
-six==1.10.0               # via django-extensions
+python-dateutil==2.5.3
+six==1.10.0               # via django-extensions, python-dateutil
 
 # The following packages are commented out because they are
 # considered to be unsafe in a requirements file:

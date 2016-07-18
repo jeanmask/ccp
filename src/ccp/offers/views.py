@@ -1,7 +1,5 @@
 # Create your views here.
 
-from decimal import Decimal
-
 import django_filters
 from django.db.models.expressions import RawSQL
 from rest_framework import viewsets, filters
