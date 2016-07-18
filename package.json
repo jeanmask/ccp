@@ -3,10 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "author": "Jean O. Rodrigues",
+  "engines": {
+    "node": "4.1.1"
+  },
   "devDependencies": {
     "bower": "^1.7.9"
   },
   "dependencies": {
     "bower": "^1.7.9"
+  },
+  "scripts": {
+    "postinstall": "bower install -F"
   }
 }
