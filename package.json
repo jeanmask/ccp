@@ -4,7 +4,7 @@
   "private": true,
   "author": "Jean O. Rodrigues",
   "engines": {
-    "node": "4.1.1"
+    "node": "6.3"
   },
   "devDependencies": {
     "bower": "^1.7.9"
