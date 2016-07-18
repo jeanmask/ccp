@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '::1']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '::1', '.jean.bz']
 
 
 # Application definition
@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'ccp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.environ.get('DB_PATH', os.path.join(BASE_DIR, 'db.sqlite3')),
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
