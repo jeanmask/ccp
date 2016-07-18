@@ -81,7 +81,7 @@ class OfferViewSet(viewsets.ReadOnlyModelViewSet):
         if max_price:
             qs = qs.filter(exchanged_price__lte=float(max_price))
 
-        return qs.order_by('exchanged_price')
+        return qs
 
 
 class OSViewSet(viewsets.ReadOnlyModelViewSet):
