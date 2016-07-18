@@ -6,6 +6,7 @@
 #
 -e git+https://github.com/django-money/django-money.git@master#egg=django-money
 -e git+https://github.com/jeanmask/django-money-rates.git@master#egg=django-money-rates
+django-crispy-forms==1.6.0
 django-extensions==1.6.7
 django-filter==0.13.0
 Django==1.9.7

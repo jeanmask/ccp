@@ -22,9 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get(
-    'DJANGO_SECRET_KEY',
-    '+*57h5-(h_3)3ra4ck2x*4gy+4rfa!3sze!tdgb30x^rezx5)6')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -159,7 +157,7 @@ CURRENCIES = ('USD', 'BRL', 'EUR',)
 DJANGO_MONEY_RATES = {
     'DEFAULT_BACKEND': 'djmoney_rates.backends.OpenExchangeBackend',
     'OPENEXCHANGE_URL': 'http://openexchangerates.org/api/latest.json',
-    'OPENEXCHANGE_APP_ID': os.environ.get('OPENEXCHANGE_APP_ID', '545780620ff343379e4ad606f2b32a8a'),
+    'OPENEXCHANGE_APP_ID': os.environ.get('OPENEXCHANGE_APP_ID'),
     'OPENEXCHANGE_BASE_CURRENCY': 'USD',
 }
 
