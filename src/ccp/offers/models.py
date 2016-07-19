@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
+import re
+
 from django.db import models
+from django.db.models.expressions import RawSQL
 from django.utils.translation import ugettext as _
 from djmoney.models.fields import MoneyField
 from sizefield.models import FileSizeField
@@ -8,16 +11,47 @@ from sizefield.utils import filesizeformat
 
 
 class OfferQuerySet(models.QuerySet):
-    def exchange_currency(self, currency):
-        pass
+    def exchange_currency(self, currency_code):
+        """
+        Exchange price in queryset to `currency_code`
+
+        :param currency_code: ISO 4217 currency code eg.: `USD`
+        :type currency_code: str
+        :return: annotated querset
+        :rtype: QuerySet
+        """
+
+        if not currency_code or not re.match(r'^[A-Z]{3}$', currency_code):
+            raise ValueError('Currency "%s" is not valid' % currency_code)
+
+        sql = """(
+            offers_offer.price / (
+                SELECT djmoney_rates_rate.value FROM djmoney_rates_rate
+                WHERE currency = offers_offer.price_currency
+                ORDER BY date DESC LIMIT 1
+            ) * (
+                SELECT value FROM djmoney_rates_rate
+                WHERE currency = %s
+                ORDER BY date DESC LIMIT 1
+            )
+        )"""
+
+        params = (currency_code,)
+
+        return self.annotate(
+            exchanged_price=RawSQL(sql, params),
+            exchanged_price_currency=RawSQL('%s', params)
+        )
 
 
 class OfferManager(models.Manager):
-    def exchange_currency(self, currency):
-        return self.get_queryset()
+    def get_queryset(self):
+        return OfferQuerySet(self.model, using=self._db)
 
 
 class Offer(models.Model):
+    objects = OfferManager()
+
     seller = models.ForeignKey('sellers.Seller', related_name='offers')
 
     operational_systems = models.ManyToManyField('offers.OperationalSystem')

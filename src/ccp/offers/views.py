@@ -1,7 +1,7 @@
 # Create your views here.
 
 import django_filters
-from django.db.models.expressions import RawSQL
+
 from rest_framework import viewsets, filters
 
 from .models import Offer, OperationalSystem
@@ -56,22 +56,9 @@ class OfferViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         qs = super(OfferViewSet, self).get_queryset()
-        exchange_currency = self.request.GET.get('exchange_currency', 'USD')
-        sql = """(
-            offers_offer.price / (
-                SELECT djmoney_rates_rate.value FROM djmoney_rates_rate
-                WHERE currency = offers_offer.price_currency
-                ORDER BY date DESC LIMIT 1
-            ) * (
-                SELECT value FROM djmoney_rates_rate
-                WHERE currency = %s
-                ORDER BY date DESC LIMIT 1
-            )
-        )"""
-        params = (exchange_currency,)
-        qs = qs.annotate(
-            exchanged_price=RawSQL(sql, params),
-            exchanged_price_currency=RawSQL('%s', params)
+
+        qs = qs.exchange_currency(
+            self.request.GET.get('exchange_currency', 'USD')
         )
 
         min_price = self.request.GET.get('min_price')
