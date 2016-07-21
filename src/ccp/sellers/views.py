@@ -9,3 +9,4 @@ from .serializers import SellerSerializer
 class SellerViewSet(viewsets.ModelViewSet):
     queryset = Seller.objects.all()
     serializer_class = SellerSerializer
+    ordering_fields = ('name',)
